@@ -1,6 +1,5 @@
 # Company Master List — Job Search 2026
 > Profile: AI Engineer / Python Backend | 2.5 YOE | RAG · LLM Orchestration · MCP · FastAPI · AWS
-> Target CTC: 18L (bottom: 15L, stretch: 22L+)
 > Updated: June 2026
 
 ---
