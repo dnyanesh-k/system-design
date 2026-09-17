@@ -93,6 +93,23 @@ An **API (Application Programming Interface)** is a set of rules and protocols t
 
 ---
 
+# HTTP/HTTPS: the Web's Foundation
+- Hypertext Transfer Protocol (HTTP) is the de-facto standard for data communication on the web. 
+- It's a `request-response` protocol where clients send requests to servers, and servers respond with the requested data.
+- HTTP is a **stateless** protocol, meaning that each request is **independent** and the server doesn't need to maintain any information about previous requests.
+- This is generally a good thing. In system design you'll want to minimize the surface area of your system that needs to be stateful where possible. 
+
+![alt text](/diagrams/simple-request-response-structure.png)
+
+**1. Request Methods :** GET, POST, PUT, DELETE, etc.
+
+**2. Status Codes:** 200 OK, 404 Not Found, 500 Server Error
+
+**3. Headers:** Metadata about request and response
+
+**4. Body:** The actual content being transferred
+
+
 # REST API
 
 ## What is REST?
@@ -174,12 +191,17 @@ REST follows these key principles:
 - `201 Created` - Resource created successfully
 - `204 No Content` - Success, no response body
 
+**Moved (3xx):**
+- `302 Found` - The requested resource has been moved temporarily
+- `301 Moved Permanently`- The requested resource has been moved permanently
+
 **Client Errors (4xx):**
 - `400 Bad Request` - Invalid request
 - `401 Unauthorized` - Authentication required
 - `403 Forbidden` - Not authorized
 - `404 Not Found` - Resource doesn't exist
 - `409 Conflict` - Resource conflict (e.g., duplicate email)
+- `429 Too Many Requests` - The client has sent too many requests in a given amount of time
 
 **Server Errors (5xx):**
 - `500 Internal Server Error` - Unexpected server error
@@ -283,13 +305,14 @@ Here's the basic flow:
 4. **Server filters and returns** only the requested fields
 
 ```mermaid
+
 graph TB
     Client[Client Application]
     GraphQL[GraphQL Server]
     DB[(Database)]
     API[REST API]
     
-    Client -->|Query: user { name, email }| GraphQL
+    Client -->|"Query: user { name, email }"| GraphQL
     GraphQL -->|Validate Schema| GraphQL
     GraphQL -->|Execute Resolvers| DB
     GraphQL -->|Execute Resolvers| API
