@@ -33,8 +33,8 @@ from mcp.client.stdio import stdio_client
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-import run as agent_run        # noqa: E402
-from evals import critic       # noqa: E402
+import run as agent_run       
+from evals import critic     
 
 SCENARIO_DIR = Path(__file__).parent / "scenarios"
 
